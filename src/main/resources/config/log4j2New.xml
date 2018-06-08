@@ -133,8 +133,8 @@
 			</Filters>
 		</RollingFile>
 		<!-- INFO、WARN、ERROR级别日志 -->
-		<RollingFile name="info_appender" immediateFlush="true"
-			fileName="${LOG_HOME}/info.log" filePattern="${LOG_HOME}/info/info${LOG_FILE_PATTERN}">
+		<RollingFile name="applog_appender" immediateFlush="true"
+			fileName="${LOG_HOME}/applog.log" filePattern="${LOG_HOME}/applog/applog${LOG_FILE_PATTERN}">
 			<PatternLayout>
 				<pattern>${LOG_PATTERN_RollingFile}</pattern>
 			</PatternLayout>
@@ -142,8 +142,6 @@
 				<SizeBasedTriggeringPolicy size="${LOG_FILE_MAXSIZE}" />
 			</Policies>
 			<Filters>
-				<ThresholdFilter level="warn" onMatch="DENY"
-					onMismatch="NEUTRAL" />
 				<ThresholdFilter level="info" onMatch="ACCEPT"
 					onMismatch="DENY" />
 			</Filters>
@@ -151,16 +149,16 @@
 	</Appenders>
 
 	<Loggers>
+		<!-- 使用<asyncRoot> 或 <asyncLogger>，includeLocation="true"是必须要设置才会有类路径等一些信息打印出来。 -->
 		<!-- 配置日志的根节点 -->
 		<!-- 定义logger，只有定义了logger并引入了appender，appender才会生效 -->
-		<root level="trace">
+		
+		<root level="trace" >
 			<appender-ref ref="console_out_appender" />
 			<appender-ref ref="console_err_appender" />
 			<appender-ref ref="trace_appender" />
 			<appender-ref ref="debug_appender" />
-			<appender-ref ref="info_appender" />
-			<appender-ref ref="warn_appender" />
-			<appender-ref ref="error_appender" />
+			<appender-ref ref="applog_appender" />
 		</root>
 
 		<!-- 第三方日志系统 -->
