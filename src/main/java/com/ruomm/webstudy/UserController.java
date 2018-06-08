@@ -5,23 +5,37 @@
  */
 package com.ruomm.webstudy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ruomm.webstudy.services.UserInfoService;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/user/getUserInfo")
+@RequestMapping("/user")
 public class UserController {
+	@Autowired
+	UserInfoService userInfoService;
+
 	@ApiOperation("获取用户支付信息")
-	@GetMapping("/getUserPayinfo/{phoneNumber}")
-	public Object getUserPayinfo(@PathVariable String phoneNumber) {
+	@GetMapping("/getUserInfo")
+	public Object getUserPayinfo() {
 		log.info("更新设置");
-		return "你好吗";
+		String str = "更新设置";
+		try {
+			str = userInfoService.getUserInfo();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			str = "更新设置";
+		}
+
+		return str;
 	}
 
 }
