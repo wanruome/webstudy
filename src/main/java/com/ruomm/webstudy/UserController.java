@@ -20,6 +20,7 @@ public class UserController {
 	@ApiOperation("获取用户支付信息")
 	@GetMapping("/getUserPayinfo/{phoneNumber}")
 	public Object getUserPayinfo(@PathVariable String phoneNumber) {
+		log.info("更新设置");
 		return "你好吗";
 	}
 

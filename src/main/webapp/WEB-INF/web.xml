@@ -15,7 +15,7 @@
 	<!--Log4J配置加载 -->
 	<context-param>
 		<param-name>log4jConfiguration</param-name>
-		<param-value>classpath:config/log4j2New.xml</param-value>
+		<param-value>classpath:config/log4j2Config.xml</param-value>
 	</context-param>
 	<!-- Spring配置 -->
 	<!-- 配置Spring配置文件路径 -->
