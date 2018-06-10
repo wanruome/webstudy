@@ -15,13 +15,13 @@
 	<context:component-scan base-package="com.ruomm.webstudy" />
 	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
 	<tx:annotation-driven transaction-manager="txManager"
-		proxy-target-class="true" order="2"/>
+		proxy-target-class="true" order="2" />
 	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
 		两个bean,是spring MVC为@Controllers分发请求所必须的 -->
 	<context:annotation-config />
 	<!-- 指定自己定义的validator -->
 	<!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
-	<mvc:annotation-driven>
+	<mvc:annotation-driven validator="validator">
 		<mvc:message-converters register-defaults="true">
 			<!-- 支持返回json(避免IE在ajax请求时，返回json出现下载 ) -->
 			<bean
@@ -41,6 +41,28 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	<!-- 以下 validator ConversionService 在使用 mvc:annotation-driven 会 自动注册 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找 -->
+				<!-- <value>classpath:messages</value> -->
+				<value>classpath:config/mvcbeanvalidator/ValidationMessages</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="cacheSeconds" value="60" />
+	</bean>
 	<!-- 访问静态资源 -->
 	<mvc:default-servlet-handler />
 

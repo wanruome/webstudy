@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "classpath:mybatis-3-mapper.dtd" >
+<mapper namespace="com.ruomm.webstudy.dal.mapper.DbSequenceMapper">
+
+	<resultMap id="dbSquenceResultMap" type="com.ruomm.webstudy.dal.model.DbSequence">
+			<result property="seqName" column="SEQ_NAME" jdbcType="VARCHAR"/>
+			<result property="seqValue" column="SEQ_VALUE" jdbcType="NUMERIC"/>
+	</resultMap>
+<!-- 	<insert id="insertDbSeq">
+		insert into tbl_util_seq(SEQ_NAME,SEQ_VALUE,VERSION) 
+		values (#{dbSequence.seqName},#{dbSequence.seqValue},#{dbSequence.version})
+	</insert> -->
+	
+</mapper>
+

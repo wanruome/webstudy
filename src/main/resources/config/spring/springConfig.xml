@@ -18,7 +18,7 @@
 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.ruomm.dto" />
+		<property name="typeAliasesPackage" value="com.ruomm.webstudy.dal.mapper" />
 		<!-- <property name="typeAliasesSuperType" value="实体类顶级包路径" /> -->
 		<property name="mapperLocations" value="classpath:mappingconfig/*.xml" />
 		<property name="configLocation" value="classpath:config/spring/mybatis-config.xml" />
@@ -33,7 +33,7 @@
 	</bean> -->
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
-        <property name="basePackage" value="com.ruomm.dao" />  
+        <property name="basePackage" value="com.ruomm.webstudy.dal.mapper" />  
         <property name="properties">
         	<value>
         	notEmpty=false

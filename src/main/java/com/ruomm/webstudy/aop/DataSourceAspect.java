@@ -10,15 +10,9 @@ import java.text.MessageFormat;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import com.ruomm.base.datasource.DataSource;
 import com.ruomm.base.datasource.DataSourceTypeManager;
@@ -28,13 +22,14 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 切换数据源(不同方法调用不同数据源)
  */
-@Configuration
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-// 扫描注入类
-@ComponentScan(basePackages = "com.ruomm.*")
-@Component
-@Order(1) // 请注意：这里order一定要小于tx:annotation-driven的order，即先执行DataSourceAspect切面，再执行事务切面，才能获取到最终的数据源
-@Aspect
+// @Configuration
+// @EnableAspectJAutoProxy(proxyTargetClass = true)
+//// 扫描注入类
+// @ComponentScan(basePackages = "com.ruomm.*")
+// @Component
+// @Order(1) //
+// 请注意：这里order一定要小于tx:annotation-driven的order，即先执行DataSourceAspect切面，再执行事务切面，才能获取到最终的数据源
+// @Aspect
 @Slf4j
 public class DataSourceAspect {
 
