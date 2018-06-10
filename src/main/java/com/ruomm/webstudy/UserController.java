@@ -29,6 +29,7 @@ public class UserController {
 		String str = "更新设置";
 		try {
 			str = userInfoService.getUserInfo();
+			userInfoService.getUserInfoTest();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

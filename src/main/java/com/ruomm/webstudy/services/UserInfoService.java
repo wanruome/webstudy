@@ -7,4 +7,6 @@ package com.ruomm.webstudy.services;
 
 public interface UserInfoService {
 	public String getUserInfo();
+
+	public String getUserInfoTest();
 }

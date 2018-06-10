@@ -15,7 +15,7 @@
 	<context:component-scan base-package="com.ruomm.webstudy" />
 	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
 	<tx:annotation-driven transaction-manager="txManager"
-		proxy-target-class="true" />
+		proxy-target-class="true" order="2"/>
 	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
 		两个bean,是spring MVC为@Controllers分发请求所必须的 -->
 	<context:annotation-config />
