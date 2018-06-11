@@ -22,6 +22,9 @@
 	<!-- 指定自己定义的validator -->
 	<!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
 	<mvc:annotation-driven validator="validator">
+		<mvc:argument-resolvers>
+			<bean class="com.ruomm.base.spring.RuommSpringArgumentsResolver"></bean>
+		</mvc:argument-resolvers>
 		<mvc:message-converters register-defaults="true">
 			<!-- 支持返回json(避免IE在ajax请求时，返回json出现下载 ) -->
 			<bean
